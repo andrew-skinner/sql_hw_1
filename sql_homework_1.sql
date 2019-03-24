@@ -1,0 +1,126 @@
+-- use sakila;
+-- #1a
+-- #select actor.first_name, actor.last_name from actor;
+-- #1b
+-- #select CONCAT(actor.first_name, ' ', actor.last_name) as Actor_Name from actor;
+-- #2a
+-- #select actor.first_name, actor.last_name, actor_id from actor where actor.first_name like "%Joe%";
+-- #2b
+-- #select actor.first_name, actor.last_name from actor where actor.last_name like "%GEN%";
+-- #2c
+-- #select actor.first_name, actor.last_name from actor where actor.last_name like "%LI%";
+-- #2d
+-- #select country_id, country from country where country.country in ("Afghanistan", "Bangladesh", "China");
+-- #3a
+-- #Alter Table actor add column description blob;
+-- #select * from actor;
+-- #3b
+-- #Alter  Table actor drop column description;
+-- #select * from actor;
+-- #4a
+-- #select last_name, count(last_name) from actor group by last_name;
+-- #4b
+-- #select last_name, count(last_name) from actor group by last_name having count(last_name) > 1;
+-- #4c
+-- #SET SQL_SAFE_UPDATES = 0;
+-- #UPDATE actor SET first_name = "Harpo" WHERE first_name = "Groucho";
+-- #4d
+-- #UPDATE actor SET first_name = "GROUCHO" WHERE first_name = "Harpo";
+-- #5a
+-- -- CREATE TABLE address (
+-- --   address_id smallint(5) AUTO_INCREMENT NOT NULL,
+-- --   address VARCHAR(50),
+-- --   address2 VARCHAR(50),
+-- --   district VARCHAR(20),
+-- --   dity_id smallint(5),
+-- --   postal_code VARCHAR(10),
+-- --   phone VARCHAR(20),
+-- --   location geometry,
+-- --   last_update timestamp,
+-- --   primary Key(address_id));
+-- #6a
+-- -- select first_name, last_name, address from staff
+-- -- join address on 
+-- -- staff.address_id=address.address_id;
+-- #6b
+-- -- select * from payment;
+-- -- select first_name, last_name, sum(amount) from payment
+-- -- join staff on staff.staff_id=payment.staff_id
+-- -- where payment_date like "2005-08%"
+-- -- group by first_name;
+-- #6c
+-- -- select title, count(actor_id) from film_actor
+-- -- inner join film on film.film_id=film_actor.film_id
+-- -- group by title;
+-- #6d
+-- -- select title, count(inventory_id) from inventory
+-- -- inner join film on film.film_id=inventory.film_id
+-- -- where title = "Hunchback Impossible";
+-- #6e
+-- -- select first_name, last_name, sum(amount) from payment
+-- -- join customer on customer.customer_id = payment.customer_id
+-- -- group by last_name order by last_name asc;
+-- #7a
+-- -- select title, language_id from film where title in 
+-- -- 	(select title from film where title like 'K%' or title like 'Q%')
+-- --     and language_id = 1;
+-- #7b
+-- -- SELECT film_id, title
+-- -- FROM film
+-- -- WHERE title ='Alone Trip';
+
+-- -- SELECT first_name, last_name
+-- -- FROM actor
+-- -- WHERE actor_id IN
+-- -- (SELECT actor_id
+-- -- FROM film_actor
+-- -- WHERE film_id=17);
+-- #7c
+-- -- select first_name, last_name, email
+-- -- from customer
+-- -- join address on customer.address_id=address.address_id
+-- -- join city on city.city_id=address.city_id
+-- -- join country on country.country_id=city.country_id
+-- -- where country = "Canada";
+-- #7d
+-- -- select title from film
+-- -- join film_category on film.film_id=film_category.film_id
+-- -- join category on film_category.category_id=category.category_id
+-- -- where name = "Family";
+-- #7e
+-- -- SELECT title, count(rental_id)
+-- -- FROM rental
+-- -- join inventory on rental.inventory_id=inventory.inventory_id
+-- -- join film on inventory.film_id=film.film_id
+-- -- GROUP BY title order by count(rental_id) desc;
+-- #7f
+-- -- select store_id, address, sum(amount) as revenue
+-- -- from address
+-- -- join store on store.address_id = address.address_id
+-- -- join payment on store.manager_staff_id = payment.staff_id group by store_id;
+-- #7g
+-- -- select store_id, city, country from store
+-- -- join address on address.address_id=store.address_id
+-- -- join city on city.city_id=address.city_id
+-- -- join country on country.country_id=city.country_id;
+-- #7h
+-- -- select name as film_category, sum(amount) AS revenue FROM payment
+-- -- join rental on rental.rental_id = payment.rental_id
+-- -- join inventory on inventory.inventory_id = rental.inventory_id
+-- -- join film_category on film_category.film_id = inventory.film_id
+-- -- join category on category.category_id = film_category.category_id
+-- -- GROUP BY name ORDER BY revenue desc
+-- -- limit 5;
+-- #8a
+-- -- create view moneygenrez as
+-- -- select name as film_category, sum(amount) AS revenue FROM payment
+-- -- join rental on rental.rental_id = payment.rental_id
+-- -- join inventory on inventory.inventory_id = rental.inventory_id
+-- -- join film_category on film_category.film_id = inventory.film_id
+-- -- join category on category.category_id = film_category.category_id
+-- -- GROUP BY name ORDER BY revenue desc
+-- -- limit 5;
+-- -- #8b
+-- -- select * from moneygenrez
+-- #8c
+-- #drop view moneygenrez;
